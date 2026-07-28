@@ -2,17 +2,15 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import utils.ScreenshotUtils;
 
-public class PerfilPage {
-    Page page;
+public class PerfilPage extends BasePage {
 
     public PerfilPage(Page page) {
-        this.page = page;
+        super(page);
     }
 
     public void acessoPerfil(String url){
-        this.page.navigate(url);
+        navegarPara(url);
     }
 
     public Locator getNomePerfil(){
@@ -20,6 +18,6 @@ public class PerfilPage {
     }
 
     public void printPerfil(){
-        ScreenshotUtils.tirarPrintTelaInteira(this.page, "telaPerfil");
+        tirarPrintTelaCheia("telaPerfil");
     }
 }

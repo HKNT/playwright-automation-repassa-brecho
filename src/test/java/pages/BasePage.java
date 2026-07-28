@@ -5,15 +5,11 @@ import com.microsoft.playwright.Page;
 import utils.ScreenshotUtils;
 
 public class BasePage {
-    Page page;
+    protected Page    page;
     Locator locator;
 
     BasePage(Page page){
         this.page = page;
-    }
-
-    BasePage(Locator locator){
-        this.locator = locator;
     }
 
     public void tirarPrintTelaCheia(String nomeArquivo){
@@ -22,5 +18,9 @@ public class BasePage {
 
     public void tirarPrintLocalizado(String nomeArquivo){
         ScreenshotUtils.tirarPrintAreaDaPagina(locator, nomeArquivo);
+    }
+
+    public void navegarPara(String url){
+        this.page.navigate(url);
     }
 }
