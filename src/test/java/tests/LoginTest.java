@@ -84,6 +84,7 @@ public class LoginTest {
         perfil.printPerfil();
         PlaywrightAssertions.assertThat(nomePerfil).hasValue("Hugo");
     }
+    
 
     @Test
     @DisplayName("Fluxo de validação antibot")
