@@ -45,7 +45,7 @@ public class LoginTest {
 
         playwright = Playwright.create();
         browser    = playwright.chromium().launch(
-//                new BrowserType.LaunchOptions().setHeadless(CI)
+                new BrowserType.LaunchOptions().setHeadless(CI)
         );
     }
     @BeforeEach
