@@ -17,6 +17,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import pages.LoginPage;
 import pages.PerfilPage;
 
@@ -64,6 +65,7 @@ public class LoginTest {
     }
 
     @Test
+    @DisabledIfEnvironmentVariable(named= "CI", matches = "true")
     @DisplayName("Fluxo de login + validação de perfil - Deve falhar por conta do recaptcha")
     void testFluxoLoginEPerfil(){
         page.navigate(URL+path_login);
