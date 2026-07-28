@@ -30,7 +30,7 @@ jobs:
 
       # 4. Instala os navegadores nativos do Playwright (Chromium, Firefox, WebKit) dentro do Linux do GitHub
       - name: Ensure Playwright browsers are installed
-        run: mvn -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+        run: mvn exec:java -e -Dexec.classpathScope=test -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install --with-deps"
 
       # 5. Executa os testes automatizados injetando as credenciais seguras
       - name: Run Playwright Tests
@@ -38,6 +38,7 @@ jobs:
           APP_URL : ${{ secrets.APP_URL }}
           USER_LOGIN: ${{ secrets.USER_LOGIN }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+          CI: "true"
         run: mvn test
 
       # 6. Salva o relatório de testes (Surefire/Failsafe) como artefato da pipeline (Roda mesmo se os testes falharem)
@@ -47,6 +48,7 @@ jobs:
         with:
           name: maven-test-reports
           path: |
+            screenShot/
             **/target/surefire-reports/
             **/target/playwright-reports/
           retention-days: 30
