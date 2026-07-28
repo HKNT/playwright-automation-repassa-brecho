@@ -16,7 +16,7 @@ public class BasePage {
         ScreenshotUtils.tirarPrintTelaInteira(page, nomeArquivo);
     }
 
-    public void tirarPrintLocalizado(String nomeArquivo){
+    public void tirarPrintLocalizado(Locator locator, String nomeArquivo){
         ScreenshotUtils.tirarPrintAreaDaPagina(locator, nomeArquivo);
     }
 

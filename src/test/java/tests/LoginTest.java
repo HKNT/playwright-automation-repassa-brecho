@@ -92,7 +92,7 @@ public class LoginTest {
         login.loginSenha(USER,PASS);
         login.clicarLogar();
 
-        Response response = login.aguardandoRecaptchaResponse();
+        Response response = login.aguardandoRecaptchaResponse(() -> login.clicarLogar());
         Assertions.assertNotNull(response, "A requisição do Recaptcha foi disparada.");
         Assertions.assertTrue(response.ok(), "Deve falhar no Recaptcha");
     }

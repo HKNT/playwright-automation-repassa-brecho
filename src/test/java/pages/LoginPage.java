@@ -16,22 +16,15 @@ public class LoginPage extends BasePage {
         this.page.getByPlaceholder("Senha").fill(pass);
     }
 
-    public Response aguardandoRecaptchaResponse(){
+    public Response aguardandoRecaptchaResponse(Runnable acaoQueDisparaRequisicao){
         try{
-            Response resp = page.waitForResponse(
-                    response -> response.url().contains("https://www.google.com/recaptcha/api2/reload"),
-                    () ->{
-                        System.out.println("Recaptcha carregou!");
-                    }
-            );
-            return resp;
-        }catch (Exception e){
-            System.out.println("TimeOut: A requisição do Recaptcha não respondeu no tempo certo!");
-            System.out.println(e.getMessage());
             return page.waitForResponse(
                     response -> response.url().contains("https://www.google.com/recaptcha/api2/reload"),
-                    () -> System.out.println("Aguardando disparo do Recaptcha...")
+                        acaoQueDisparaRequisicao
             );
+        }catch (Exception e){
+            System.out.println("TimeOut: A requisição do Recaptcha não respondeu no tempo certo!");
+            return null;
         }
     }
 
